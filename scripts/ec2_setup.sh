@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_DIR="${APP_DIR:-$(pwd)}"
+APP_DIR="${APP_DIR:-/home/ubuntu/website-test-cases}"
 VENV_DIR="${VENV_DIR:-$APP_DIR/.venv}"
 
 cd "$APP_DIR"

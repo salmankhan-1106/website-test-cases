@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_DIR="${APP_DIR:-$(pwd)}"
+APP_DIR="${APP_DIR:-/home/ubuntu/website-test-cases}"
 APP_USER="${APP_USER:-ubuntu}"
 APP_PORT="${APP_PORT:-8000}"
 SERVICE_NAME="${SERVICE_NAME:-voltedge}"

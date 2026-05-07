@@ -82,7 +82,7 @@ After=network.target
 [Service]
 User=ubuntu
 WorkingDirectory=/home/ubuntu/<REPO_FOLDER>
-ExecStart=/home/ubuntu/<REPO_FOLDER>/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 9000
+ExecStart=/home/ubuntu/website-test-cases/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 9000
 Restart=always
 
 [Install]
@@ -103,8 +103,8 @@ On EC2, from the repo root:
 
 ```bash
 chmod +x scripts/ec2_setup.sh scripts/ec2_service.sh
-APP_PORT=9000 APP_USER=ubuntu SERVICE_NAME=voltedge scripts/ec2_setup.sh
-APP_PORT=9000 APP_USER=ubuntu SERVICE_NAME=voltedge scripts/ec2_service.sh
+APP_DIR=/home/ubuntu/website-test-cases APP_PORT=9000 APP_USER=ubuntu SERVICE_NAME=voltedge scripts/ec2_setup.sh
+APP_DIR=/home/ubuntu/website-test-cases APP_PORT=9000 APP_USER=ubuntu SERVICE_NAME=voltedge scripts/ec2_service.sh
 ```
 
 ## Jenkins (running on the same EC2 instance)
@@ -115,6 +115,7 @@ This repo includes a Jenkinsfile that:
 - installs/starts the systemd service
 
 You can set Jenkins pipeline env vars:
+- APP_DIR (default /home/ubuntu/website-test-cases)
 - APP_PORT (default 9000)
 - APP_USER (default ubuntu)
 - SERVICE_NAME (default voltedge)

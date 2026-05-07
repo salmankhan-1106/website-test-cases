@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ site_name }} | Powering Smart Teams</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <span class="brand-mark">V</span>
+          <span class="brand-name">{{ site_name }}</span>
+        </div>
+        <nav class="nav-links">
+          <a id="nav-home" href="#top">Home</a>
+          <a id="nav-features" href="#features">Features</a>
+          <a id="nav-pricing" href="#pricing">Pricing</a>
+          <a id="nav-contact" href="#contact">Contact</a>
+        </nav>
+        <a class="button ghost" href="#pricing">Get Started</a>
+      </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <div>
+          <strong>{{ site_name }}</strong>
+          <p>Built for teams that ship faster.</p>
+        </div>
+        <div class="footer-meta">
+          <span id="footer-year">2026</span>
+          <span>All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

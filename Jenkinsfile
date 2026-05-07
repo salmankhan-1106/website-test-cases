@@ -32,10 +32,5 @@ pipeline {
       }
     }
 
-    stage('Deploy Service') {
-      steps {
-        sh 'APP_DIR=${APP_DIR} APP_PORT=${APP_PORT} APP_USER=${APP_USER} SERVICE_NAME=${SERVICE_NAME} scripts/ec2_service.sh'
-      }
-    }
   }
 }

@@ -112,7 +112,12 @@ APP_DIR=/home/ubuntu/website-test-cases APP_PORT=9000 APP_USER=ubuntu SERVICE_NA
 This repo includes a Jenkinsfile that:
 - sets up the venv and installs deps
 - optionally runs Selenium tests (set RUN_SELENIUM=true)
-- installs/starts the systemd service
+
+If you do not allow passwordless sudo for Jenkins, install/start the service manually once:
+
+```bash
+APP_DIR=/home/ubuntu/website-test-cases APP_PORT=9000 APP_USER=ubuntu SERVICE_NAME=voltedge scripts/ec2_service.sh
+```
 
 You can set Jenkins pipeline env vars:
 - APP_DIR (default /home/ubuntu/website-test-cases)

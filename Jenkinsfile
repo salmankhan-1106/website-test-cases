@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    APP_DIR = "/home/ubuntu/website-test-cases"
+    APP_DIR = "${WORKSPACE}"
     APP_PORT = "9000"
     APP_USER = "ubuntu"
     SERVICE_NAME = "voltedge"

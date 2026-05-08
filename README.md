@@ -111,7 +111,7 @@ APP_DIR=/home/ubuntu/website-test-cases APP_PORT=9000 APP_USER=ubuntu SERVICE_NA
 
 This repo includes a Jenkinsfile that:
 - sets up the venv and installs deps
-- optionally runs Selenium tests (set RUN_SELENIUM=true)
+- optionally runs Selenium tests in Docker (set RUN_SELENIUM=true)
 
 If you do not allow passwordless sudo for Jenkins, install/start the service manually once:
 
@@ -125,4 +125,7 @@ You can set Jenkins pipeline env vars:
 - APP_USER (default ubuntu)
 - SERVICE_NAME (default voltedge)
 - RUN_SELENIUM (default false)
+
+Docker-based tests use the image `markhobson/maven-chrome` and run with `--network host`,
+so the app must already be running on the host at the configured `APP_PORT`.
 ```

@@ -23,12 +23,16 @@ pipeline {
       }
     }
 
-    stage('Run Tests (optional)') {
+    stage('Run Tests (Docker)') {
       when {
         expression { return env.RUN_SELENIUM == 'true' }
       }
       steps {
-        sh 'cd selenium-tests && mvn test -DbaseUrl=http://localhost:${APP_PORT}/'
+        script {
+          docker.image('markhobson/maven-chrome:latest').inside('--network host') {
+            sh 'cd selenium-tests && mvn test -DbaseUrl=http://localhost:${APP_PORT}/'
+          }
+        }
       }
     }
 

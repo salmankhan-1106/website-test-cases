@@ -37,4 +37,17 @@ pipeline {
     }
 
   }
+
+  post {
+    always {
+      script {
+        def authorEmail = sh(script: "git log -1 --pretty=%ae", returnStdout: true).trim()
+        emailext(
+          to: authorEmail,
+          subject: "Jenkins Build ${env.JOB_NAME} #${env.BUILD_NUMBER}: ${currentBuild.currentResult}",
+          body: "Build status: ${currentBuild.currentResult}\n\nJob: ${env.JOB_NAME}\nBuild: #${env.BUILD_NUMBER}\nURL: ${env.BUILD_URL}\n"
+        )
+      }
+    }
+  }
 }

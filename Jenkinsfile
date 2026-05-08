@@ -7,6 +7,8 @@ pipeline {
     APP_USER = "ubuntu"
     SERVICE_NAME = "voltedge"
     RUN_SELENIUM = "false"
+    APP_IMAGE = "voltedge-app"
+    APP_CONTAINER = "voltedge-app"
   }
 
   stages {
@@ -20,6 +22,14 @@ pipeline {
       steps {
         sh 'chmod +x scripts/ec2_setup.sh scripts/ec2_service.sh'
         sh 'APP_DIR=${APP_DIR} APP_PORT=${APP_PORT} APP_USER=${APP_USER} SERVICE_NAME=${SERVICE_NAME} scripts/ec2_setup.sh'
+      }
+    }
+
+    stage('Start App (Docker)') {
+      steps {
+        sh 'docker rm -f ${APP_CONTAINER} || true'
+        sh 'docker build -t ${APP_IMAGE} .'
+        sh 'docker run -d --name ${APP_CONTAINER} -p ${APP_PORT}:9000 ${APP_IMAGE}'
       }
     }
 
@@ -48,6 +58,8 @@ pipeline {
           body: "Build status: ${currentBuild.currentResult}\n\nJob: ${env.JOB_NAME}\nBuild: #${env.BUILD_NUMBER}\nURL: ${env.BUILD_URL}\n"
         )
       }
+
+      sh 'docker rm -f ${APP_CONTAINER} || true'
     }
   }
 }

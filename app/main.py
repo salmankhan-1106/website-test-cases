@@ -7,7 +7,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
-
+# print ("salman khan")
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request) -> HTMLResponse:
     return templates.TemplateResponse(
